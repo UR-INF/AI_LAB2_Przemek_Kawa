@@ -6,15 +6,13 @@ CREATE TABLE `Klient` (
   `haslo` varchar(255),
   `nr_telefonu` int,
   `nr_karty` int,
-  `data_waz` varchar(255),
-  `cvv` int
+  `data_waz` varchar(255)
 );
 
-CREATE TABLE `Sprzet` (
-  `id_sprzet` int PRIMARY KEY,
+CREATE TABLE `Pojazdy` (
+  `id_pojazdu` int PRIMARY KEY,
   `marka` varchar(255),
   `model` varchar(255),
-  `rok_prod` date,
   `silnik` varchar(255),
   `klimatyzacja` varchar(255),
   `nr_rej` varchar(255),
@@ -56,8 +54,8 @@ CREATE TABLE `Wypozyczenie` (
 
 ALTER TABLE `Miejsce` ADD FOREIGN KEY (`id_pracownik`) REFERENCES `Pracownik` (`id_pracownik`);
 
-ALTER TABLE `Miejsce` ADD FOREIGN KEY (`id_sprzet`) REFERENCES `Sprzet` (`id_sprzet`);
+ALTER TABLE `Miejsce` ADD FOREIGN KEY (`id_sprzet`) REFERENCES `Pojazdy` (`id_pojazdu`);
 
-ALTER TABLE `Wypozyczenie` ADD FOREIGN KEY (`id_sprzet`) REFERENCES `Sprzet` (`id_sprzet`);
+ALTER TABLE `Wypozyczenie` ADD FOREIGN KEY (`id_sprzet`) REFERENCES `Pojazdy` (`id_pojazdu`);
 
 ALTER TABLE `Wypozyczenie` ADD FOREIGN KEY (`id_klient`) REFERENCES `Klient` (`id_klient`);
