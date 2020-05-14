@@ -4,9 +4,7 @@ CREATE TABLE `Klient` (
   `nazwisko` varchar(255),
   `email` varchar(255),
   `haslo` varchar(255),
-  `nr_telefonu` int,
-  `nr_karty` int,
-  `data_waz` varchar(255)
+  `nr_telefonu` int
 );
 
 CREATE TABLE `Pojazdy` (
