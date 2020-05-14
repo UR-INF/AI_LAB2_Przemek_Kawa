@@ -1,5 +1,5 @@
 CREATE TABLE `Klient` (
-  `id_klient` int PRIMARY KEY,
+  `id_klient` int PRIMARY KEY NOT NULL AUTO_INCREMENT NOT NULL AUTO_INCREMENT,
   `imie` varchar(255),
   `nazwisko` varchar(255),
   `email` varchar(255),
@@ -8,7 +8,7 @@ CREATE TABLE `Klient` (
 );
 
 CREATE TABLE `Pojazdy` (
-  `id_pojazdu` int PRIMARY KEY,
+  `id_pojazdu` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `marka` varchar(255),
   `model` varchar(255),
   `silnik` varchar(255),
@@ -21,7 +21,7 @@ CREATE TABLE `Pojazdy` (
 );
 
 CREATE TABLE `Pracownik` (
-  `id_pracownik` int PRIMARY KEY,
+  `id_pracownik` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `imie` varchar(255),
   `nazwisko` varchar(255),
   `email` varchar(255),
@@ -30,7 +30,7 @@ CREATE TABLE `Pracownik` (
 );
 
 CREATE TABLE `Miejsce` (
-  `id_miejsce` int PRIMARY KEY,
+  `id_miejsce` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `id_pracownik` int,
   `id_sprzet` int,
   `ulica` varchar(255),
@@ -41,7 +41,7 @@ CREATE TABLE `Miejsce` (
 );
 
 CREATE TABLE `Wypozyczenie` (
-  `id_wypozyczenia` int PRIMARY KEY,
+  `id_wypozyczenia` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `id_sprzet` int,
   `id_klient` int,
   `data_odb` date,

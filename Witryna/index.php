@@ -19,33 +19,75 @@ error_reporting(0);
 	
 	<body>
 	<section id="start">
-	
-	<section>
-			<div class="nav navbar-collapse">
+	 	<div class="container text-center">
+		 <h1>BuldoRex</h1>
+		 <div class="logo"> <img src="img/logo.jpg"></div>
+		</div>
+	</section>
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="container">
 				<ul class="nav justify-content-end">
 					<li class="nav-item">
-						<a class="nav-link active" href="#Start">Start</a>
+						<a class="nav-link active" href="index.php#onas#Start">Start</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#onas">O nas</a>
+						<a class="nav-link" href="index.php#onas">O nas</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#galeria">Galeria</a>
+						<a class="nav-link" href="index.php#onas#galeria">Galeria</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#kontakt">O nas</a>
+						<a class="nav-link" href="index.php#onas#kontakt">Kontakt</a>
 					</li>
 				</ul>
-				<div class "my-2">
+				<div class="my-2">
 				<?php if(strlen($_SESSION['login'])==0)
 				{
 				?>
-					<div class="login_btn"> <a href="#placeholder">Login / Rejestracja</a></div>
+					<button class="login_btn bg-secondary"> <a class="nav-link" href="#placeholder">Login</a></button>
+					<button class="login_btn bg-secondary"> <a class="nav-link" href="rejestracja.php">Rejestracja</a></button>
 				<?php }
-				else { echo "Witaj zalogowany użytkowniku!";
+				else { echo "Zalogowany";
 				} ?>
 				</div>
 			</div>
 
-	
-			
+	</nav>
+	<section id="onas" class="bg-secondary">
+		<div class="container">
+		<h3 class="text-cenetr">O Nas</h3>
+			<p>W roku 1990 system GNU posiadał już edytor tekstu (Emacs),
+				kompilator (GCC) oraz większość podstawowych bibliotek i narzędzi standardowej dystrybucji Uniksa.
+				Jako że głównym założeniem było stworzenie w pełni wolnego systemu operacyjnego, a nie napisanie go zupełnie od nowa,
+				starano się używać wolnego oprogramowania wszędzie, gdzie było to możliwe. W latach 80. 
+				nie było go zbyt wiele; skorzystano więc z okienkowego systemu graficznego X Window System, systemu profesjonalnego składu drukarskiego
+				TeX i mikrojądra Mach i włączono je do GNU.
+			</p>
+		</div>
+	</section>
+	<section id="Galeria" class="bg-white">
+		<div class="container">
+		<h3 class="text-cenetr">Galeria</h3>
+			<p>W roku 1990 system GNU posiadał już edytor tekstu (Emacs),
+				kompilator (GCC) oraz większość podstawowych bibliotek i narzędzi standardowej dystrybucji Uniksa.
+				Jako że głównym założeniem było stworzenie w pełni wolnego systemu operacyjnego, a nie napisanie go zupełnie od nowa,
+				starano się używać wolnego oprogramowania wszędzie, gdzie było to możliwe. W latach 80. 
+				nie było go zbyt wiele; skorzystano więc z okienkowego systemu graficznego X Window System, systemu profesjonalnego składu drukarskiego
+				TeX i mikrojądra Mach i włączono je do GNU.
+			</p>
+		</div>
+	</section>
+	<section id="kontakt" class="bg-secondary">
+		<div class="container">
+		<h3 class="text-cenetr">Kontakt</h3>
+			<p>W roku 1990 system GNU posiadał już edytor tekstu (Emacs),
+				kompilator (GCC) oraz większość podstawowych bibliotek i narzędzi standardowej dystrybucji Uniksa.
+				Jako że głównym założeniem było stworzenie w pełni wolnego systemu operacyjnego, a nie napisanie go zupełnie od nowa,
+				starano się używać wolnego oprogramowania wszędzie, gdzie było to możliwe. W latach 80. 
+				nie było go zbyt wiele; skorzystano więc z okienkowego systemu graficznego X Window System, systemu profesjonalnego składu drukarskiego
+				TeX i mikrojądra Mach i włączono je do GNU.
+			</p>
+		</div>
+	</section>
+	</body>
+</html>
