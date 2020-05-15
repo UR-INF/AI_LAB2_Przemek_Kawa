@@ -13,6 +13,8 @@ error_reporting(0);
 		<meta name="description" content="Wypożyczalnia pojazdów budowlanych">
 		<meta name="keywords" content="wypożyczalnia pojazdów budowlanych, budowa, koparka">
 		<meta name="author" content="Przemek">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
@@ -28,7 +30,7 @@ error_reporting(0);
 		<div class="container">
 				<ul class="nav justify-content-end">
 					<li class="nav-item">
-						<a class="nav-link active" href="index.php#onas#Start">Start</a>
+						<a class="nav-link active" href="index.php#start">Start</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="index.php#onas">O nas</a>
@@ -44,10 +46,16 @@ error_reporting(0);
 				<?php if(strlen($_SESSION['login'])==0)
 				{
 				?>
-					<button class="login_btn bg-secondary"> <a class="nav-link" href="#placeholder">Login</a></button>
-					<button class="login_btn bg-secondary"> <a class="nav-link" href="rejestracja.php">Rejestracja</a></button>
+					
+						<?php include('login.php'); ?>
+						<?php include('rejestracja.php');?>
+					
 				<?php }
-				else { echo "Zalogowany";
+				else { 
+					?>
+						<a class="btn btn-secondary" href="logout.php" role="button" >
+						 Logout</a>
+					<?php
 				} ?>
 				</div>
 			</div>
@@ -89,5 +97,6 @@ error_reporting(0);
 			</p>
 		</div>
 	</section>
+
 	</body>
 </html>
