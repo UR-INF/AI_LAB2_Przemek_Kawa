@@ -13,20 +13,18 @@ error_reporting(0);
 		<meta name="description" content="Wypożyczalnia pojazdów budowlanych">
 		<meta name="keywords" content="wypożyczalnia pojazdów budowlanych, budowa, koparka">
 		<meta name="author" content="Przemek">
+		<!-- bootstrap -->
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		<!-- personal css -->
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	
 	<body>
-	<section id="start">
-	 	<div class="container text-center">
-		 <h1>BuldoRex</h1>
-		 <div class="logo"> <img src="img/logo.jpg"></div>
-		</div>
-	</section>
-	<nav class="navbar navbar-dark bg-dark">
+
+	<nav class="navbar sticky-top navbar-dark bg-dark">
 		<div class="container">
 				<ul class="nav justify-content-end">
 					<li class="nav-item">
@@ -36,10 +34,10 @@ error_reporting(0);
 						<a class="nav-link" href="index.php#onas">O nas</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="index.php#onas#galeria">Galeria</a>
+						<a class="nav-link" href="index.php#galeria">Galeria</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="index.php#onas#kontakt">Kontakt</a>
+						<a class="nav-link" href="index.php#kontakt">Kontakt</a>
 					</li>
 				</ul>
 				<div class="my-2">
@@ -47,8 +45,8 @@ error_reporting(0);
 				{
 				?>
 					
-						<?php include('login.php'); ?>
-						<?php include('rejestracja.php');?>
+					<div class="login_btn"> <a class="text-white" href="#rejstruje" class="btn-xs uppercase" data-togle="modal">Logowanie / Rejestracjja</a></div>
+						
 					
 				<?php }
 				else { 
@@ -61,6 +59,24 @@ error_reporting(0);
 			</div>
 
 	</nav>
+	<section class="bg-white text-center">
+		<center>
+		<div class="carousel slide " data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img class="d-block w-50" src="img/strona/top1.jpg" alt="first">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-50" src="img/strona/top2.jpg" alt="second">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-50" src="img/strona/top3.jpg" alt="third">
+				</div>
+			</div>
+		</center>
+	</div>
+	</section>
+
 	<section id="onas" class="bg-secondary">
 		<div class="container">
 		<h3 class="text-cenetr">O Nas</h3>
@@ -70,13 +86,7 @@ error_reporting(0);
 				starano się używać wolnego oprogramowania wszędzie, gdzie było to możliwe. W latach 80. 
 				nie było go zbyt wiele; skorzystano więc z okienkowego systemu graficznego X Window System, systemu profesjonalnego składu drukarskiego
 				TeX i mikrojądra Mach i włączono je do GNU.
-			</p>
-		</div>
-	</section>
-	<section id="Galeria" class="bg-white">
-		<div class="container">
-		<h3 class="text-cenetr">Galeria</h3>
-			<p>W roku 1990 system GNU posiadał już edytor tekstu (Emacs),
+				W roku 1990 system GNU posiadał już edytor tekstu (Emacs),
 				kompilator (GCC) oraz większość podstawowych bibliotek i narzędzi standardowej dystrybucji Uniksa.
 				Jako że głównym założeniem było stworzenie w pełni wolnego systemu operacyjnego, a nie napisanie go zupełnie od nowa,
 				starano się używać wolnego oprogramowania wszędzie, gdzie było to możliwe. W latach 80. 
@@ -85,6 +95,7 @@ error_reporting(0);
 			</p>
 		</div>
 	</section>
+
 	<section id="kontakt" class="bg-secondary">
 		<div class="container">
 		<h3 class="text-cenetr">Kontakt</h3>
@@ -97,6 +108,26 @@ error_reporting(0);
 			</p>
 		</div>
 	</section>
+	<?php if(strlen($_SESSION['login'])==0)
+				{
+				?>
+	<section id="rejstruje" class="bg-light">
+		<div class="container">
+		<h3 class="text-cenetr">Rejestracja/Logowanie</h3>
+		<div class="row">
+		   <div class="col-sm-4">
 
+				<h2 class="text-cenetr">Rejestracja</h3>
+				<?php include('rejestracja.php');?>
+
+			</div>
+			<div class="col-sm-4">
+				<h2 class="text-cenetr">Logowanie</h3>
+				<?php include('login.php');?>
+			</div>
+		</div>
+		</div>
+	</section>
+	<?php } ?>
 	</body>
 </html>

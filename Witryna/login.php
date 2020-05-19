@@ -13,7 +13,7 @@ if(isset($_POST['login']))
     $query->bindParam(':pass',$haslo,PDO::PARAM_STR);
     $query->execute();
     $result=$query->fetchAll(PDO::FETCH_OBJ);
-    if($query->rowCount()>0)
+    if($query->rowCount() > 0)
     {
         $_SESSION['login']=$_POST['email'];
         $_SESSION['imie']=$result->imie;
@@ -28,20 +28,16 @@ if(isset($_POST['login']))
 
 ?>
 
-<div class="dropdown d-inline">
-		<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						 Login</a>
-            <div class="dropdown-menu">
+
               <form method="post">
                 <div class="form-group">
-                  <input type="email" class="form-control" name="email" id="email"  placeholder="Email" required="required">
+                  <input type="email" class="form-control" name="email"  placeholder="Email" required="required">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" name="password" placeholder="Hasło" required="required">
+                  <input type="password" class="form-control" name="pass" placeholder="Hasło" required="required">
                 </div>
                 <div class="form-group bg-secondary">
                   <input type="submit" value="login" name="login"  class="btn btn-block">
                 </div>              
               </form>
-            </div>
-</div>
+

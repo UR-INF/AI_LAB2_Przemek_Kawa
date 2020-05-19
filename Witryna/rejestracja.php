@@ -7,7 +7,7 @@ if(isset($_POST['rejestr']))
     $imie=$_POST['imie'];
     $nazwisko=$_POST['nazwisko'];
     $email=$_POST['email'];
-    $haslo=md5($_POST['pass']);
+    $haslo=md5($_POST['password']);
     $nr_tel=$_POST['nr_tel'];
     $sql="INSERT INTO klient(imie,nazwisko,email,haslo,nr_telefonu) VALUES (:imie,:nazwisko,:email,:pass,:nr_tel)";
     $query = $nah->prepare($sql);
@@ -28,15 +28,41 @@ if(isset($_POST['rejestr']))
     }
                   
 }
-  
-
 ?>
 
-<div class="dropdown d-inline">
-		<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						 Rejestracja</a>
-            <div class="dropdown-menu">
-              <form method="post" name="rejestr" onSubmit="return valid();" class>
+<!--  
+<script>
+function checkemail()
+{
+  $("loaderIcon").show();
+  jQuery.ajax({
+    url: "checkemail.php",
+    data:'email'=$("#email").val(),
+    type: "POST",
+    success:function(data){
+      $("#user-avalibity-status").html(data);
+      $("loaderIcon").hide();
+    },
+    error:function(){}
+
+  });
+}
+</script>-->
+
+<script type="text/javascript">
+function valid()
+{
+  if(document.rejestr.password.value!=document.rejestr.confirmpassword.value)
+  {
+    alet("Hasla nie są identyczne!");
+    return false;
+  }
+  return true;
+}
+</script>
+
+            
+              <form method="post" name="rejestr" onSubmit="return valid();" >
                 <div class="form-group">
                   <input type="text" class="form-control" name="imie" placeholder="Imie" required="required">
                 </div>
@@ -47,8 +73,8 @@ if(isset($_POST['rejestr']))
                   <input type="text" class="form-control" name="nr_tel" placeholder="Numer Telefonu" maxlength="10" required="required">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" name="email" id="email"  placeholder="Email" required="required"> <!-- onBlur="checkAvailability()" -->
-                  <!--  <span id="user-availability-status" style="font-size:12px;"></span> -->
+                  <input  type="email" class="form-control" name="email" id="email"  placeholder="Email" required="required" > 
+                  <span id="user-availability-status" style="font-size:12px;"></span>
                 </div>
                 <div class="form-group">
                   <input type="password" class="form-control" name="password" placeholder="Hasło" required="required">
@@ -65,5 +91,4 @@ if(isset($_POST['rejestr']))
                 </div>
                
               </form>
-            </div>
-</div>
+
