@@ -11,6 +11,7 @@ CREATE TABLE `Sprzet` (
   `id_sprzet` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `marka` varchar(255),
   `model` varchar(255),
+  `typ_sprzetu` varchar(255),
   `cena` int,
   `kaucja` int,
   `zdjecie` varchar(255)
