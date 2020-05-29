@@ -1,10 +1,5 @@
 <?php
 session_start();
-$conn = new mysqli("localhost","root","","aplikacje");
-
-if($conn->connect_error) {
-	die("Conn Fail: ".$conn->connect_error);
-}
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +25,7 @@ if($conn->connect_error) {
 	<body>
 
 
-	<nav class="navbar sticky-top navbar-dark bg-dark">
+	<<nav class="navbar sticky-top navbar-dark bg-dark">
 		<div class="container">
 				<ul class="nav justify-content-end">
 					<li class="nav-item">
@@ -80,116 +75,46 @@ if($conn->connect_error) {
 			</div>
 
 	</nav>
- <div class="row content"  >
-    <div class="col-sm-2" >
-
-    </div>
-	<div class="col-sm-8 text-center" >  
-		<div id="demo" class="carousel slide" data-ride="carousel" >
-
-		  <!-- Indicators -->
-		  <ul class="carousel-indicators">
-			<li data-target="#demo" data-slide-to="0" class="active"></li>
-			<li data-target="#demo" data-slide-to="1"></li>
-			<li data-target="#demo" data-slide-to="2"></li>
-		  </ul>
-
-		  <!-- The slideshow -->
-		  <div class="carousel-inner">
-			<div class="carousel-item active">
-			  <img src="img/strona/top1.png" alt="Not found">
-			  <div class="carousel-caption">
-				<h3>Spychy</h3>
-				<p>Na pewno je mamy</p>
-			 </div>
-			</div>
-			<div class="carousel-item">
-			  <img src="img/strona/top2.png" alt="Not found">
-			  <div class="carousel-caption">
-				<h3>Cieżarówki</h3>
-				<p>Nie to nie my</p>
-			 </div>
-			</div>
-			<div class="carousel-item">
-			  <img src="img/strona/top3.png" alt="Not found">
-			  <div class="carousel-caption">
-				<h3>Betoniarka?</h3>
-				<p>Też jest</p>
-			 </div>
-			</div>
-		  </div>
-
-		  <!-- Left and right controls -->
-		  <a style="filter: invert(100%)" class="carousel-control-prev" href="#demo" data-slide="prev">
-			<span class="carousel-control-prev-icon"></span>
-		  </a>
-		  <a style="filter: invert(100%)" class="carousel-control-next" href="#demo" data-slide="next">
-			<span class="carousel-control-next-icon"></span>
-		  </a>
+<div class="container">	
+ <div class="row content bg-success text-center"  >
+	<div class="col-sm"></div>
+	<div class="col-sm">
+	<br>
+		<form method="post" action="ch_pass_POST.php">
+		<div class="form-group">
+		  <input type="text" class="form-control" name="email" placeholder="Email" required="required">
+		</div>
+		<div class="form-group">
+		  <input type="text" class="form-control" name="passwordch" placeholder="Stare Hasło" required="required">
 
 		</div>
-	</div>
-	<div class="col-sm-2">
+		<div class="form-group">
+		  <input type="password" class="form-control" name="password" placeholder="Nowe Hasło" required="required">
 
-      </div>
+		</div>
+		<div class="form-group">
+		  <input type="password" class="form-control" name="ppassword" placeholder="Potwierdz Nowe Hasło" required="required">
+
+		</div>
+		
+		<div class="form-group">
+		  <input type="submit" value="Zmień" name="reset" id="rejestr" class="btn btn-dark btn-lg">
+		</div>
+	   
+	  </form>
+	  <?php
+	  if(isset($_SESSION['Grrr']))
+	  {
+		  echo $_SESSION['Grrr'];
+		  unset ($_SESSION['Grrr']);
+	  }?>
+	</div>
+	<div class="col-sm"></div>
  </div>
-<div class="container text-center  bg-dark text-white">    
- <div id="my">
-	<br>
-	<h3 class="text-center">Dlaczego my?</h3>
-	<br>
-	<div class="container">
-		<div class="row text-center">
-			<div class="col-md-3">
-				<i class="icon-shopping-basket"></i>
-				<h4>Tylko Kilka kroków</h4>
-				<p>
-					i masz sprzęt którego potrzebujesz
-				</p>
-			</div>
-
-			<div class="col-md-3">
-				<i class="icon-dollar"></i>
-				<h4>
-					Brak Kaucji
-				</h4>
-				<p>
-					za wypożyczenie
-				</p>
-
-			</div>
-
-			<div class="col-md-3">
-				<i class="icon-truck"></i>
-				<h4>
-					Podstawienie za darmo
-				</h4>
-				<p>
-					W 1 dzień
-				</p>
-
-
-			</div>
-			<div class="col-md-3">
-				<i class="icon-clock-alt"></i>
-				<h4>
-					Całodobowa obsługa
-				</h4>
-				<p>
-					chętnie pomoże Ci w każdej sytaucji
-				</p>
-
-			</div>
-		</div>
-	</div>
-	<br>
-</div>
-</div>
-<div class="container bg-secondary">  <br>
 </div>
 <div class="container text-center bg-dark text-white">    
  <div id="Kontakt">
-	<br>
+		<br>
 		<div class="container">
 			<div class="row ">
 				<div class="col-sm-12 col-md-4">
