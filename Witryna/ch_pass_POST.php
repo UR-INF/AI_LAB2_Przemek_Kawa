@@ -8,10 +8,11 @@ session_start();
 			die("Conn Fail: ".$conn->connect_error);
 		}
 		$email=$_POST['email'];
+		$oldpass=md5($_POST['oldpass']);
 		$haslo=md5($_POST['password']);
 		$haslo2=md5($_POST['ppassword']);
-		$nr_tel=$_POST['passwordch'];
-		$sql="SELECT id_klient FROM klient WHERE email=LOWER('$email') and haslo='$nr_tel'";
+		
+		$sql="SELECT id_klient FROM klient WHERE email=LOWER('$email') and haslo='$oldpass'";
 		$res = $conn->query($sql);
 		$rk =0;
 		while($row = $res->fetch_assoc())
@@ -22,7 +23,7 @@ session_start();
 		{
 			if($haslo == $haslo2)
 			{
-				$sql="UPDATE klient SET haslo='$haslo' WHERE id_klient='$rk'" ;
+				$sql="UPDATE klient SET haslo='$haslo2' WHERE id_klient='$rk'" ;
 				$magic=mysqli_query($conn,$sql);
 				$_SESSION['Grrr']='<hr><h2>Succes!</h2><hr>';
 				
@@ -38,6 +39,6 @@ session_start();
 		}
 		unset($_POST['reset']);
 		$conn->close();
-		header('Location: fogpass.php');
+		header('Location: chhaslo.php');
 	  }
 	  ?>

@@ -35,7 +35,7 @@ if(isset($_POST['login']))
 		}
 		if($test >0)
 		{
-			$coon->close();
+			$conn->close();
 			$_SESSION['prac']=$email;
 			header('Location: index.php');
 		}
@@ -51,7 +51,7 @@ if(isset($_POST['login']))
                   
 }
   
-
+$conn->close();
 ?>
 
 

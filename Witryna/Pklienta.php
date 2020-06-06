@@ -1,5 +1,16 @@
 <?php
 session_start();
+$conn = new mysqli("localhost","root","","aplikacje");
+
+if($conn->connect_error) {
+	die("Conn Fail: ".$conn->connect_error);
+}
+if(!isset($_SESSION['login']))
+{
+	$conn->close();
+	header('Location: index.php');
+	exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +59,7 @@ session_start();
 							<a class="dropdown-item" href="chhaslo.php">Zmień hasło</a>
 							<a class="dropdown-item" href="Pklienta.php">Panel Klienta</a>
 							<a class="dropdown-item" href="Wform.php">Formularz Wypożyczenia</a>
-						</div
+						</div>
 						</div>
 					</li>
 					<?php
@@ -78,46 +89,21 @@ session_start();
 			</div>
 
 	</nav>
-<div class="container">	
- <div class="row content bg-success text-center"  >
-	<div class="col-sm"></div>
-	<div class="col-sm">
-	<br>
-		<form method="post" action="ch_pass_POST.php">
-		<div class="form-group">
-		  <input type="text" class="form-control" name="email" placeholder="Email" required="required">
-		</div>
-		<div class="form-group">
-		  <input type="text" class="form-control" name="oldpass" placeholder="Stare Hasło" required="required">
+ <div class="row content"  >
+    <div class="col-sm-2" >
 
-		</div>
-		<div class="form-group">
-		  <input type="password" class="form-control" name="password" placeholder="Nowe Hasło" required="required">
-
-		</div>
-		<div class="form-group">
-		  <input type="password" class="form-control" name="ppassword" placeholder="Potwierdz Nowe Hasło" required="required">
-
-		</div>
+    </div>
+	<div class="col-sm-8 text-center" >  
 		
-		<div class="form-group">
-		  <input type="submit" value="Zmień" name="reset" id="rejestr" class="btn btn-dark btn-lg">
-		</div>
-	   
-	  </form>
-	  <?php
-	  if(isset($_SESSION['Grrr']))
-	  {
-		  echo $_SESSION['Grrr'];
-		  unset ($_SESSION['Grrr']);
-	  }?>
 	</div>
-	<div class="col-sm"></div>
+	<div class="col-sm-2">
+
+      </div>
  </div>
-</div>
+
 <div class="container text-center bg-dark text-white">    
  <div id="Kontakt">
-		<br>
+	<br>
 		<div class="container">
 			<div class="row ">
 				<div class="col-sm-12 col-md-4">

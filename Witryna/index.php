@@ -46,11 +46,14 @@ if($conn->connect_error) {
 					<?php if (isset($_SESSION['login']))
 					{	?>
 					<li class="nav-item Dropdown">
+						<div class="dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Konto</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="chhaslo.php">Zmień hasło</a>
-							<a class="dropdown-item" href="Pklienta.php">Panel Wypożyczeń</a>
+							<a class="dropdown-item" href="Pklienta.php">Panel Klienta</a>
+							<a class="dropdown-item" href="Wform.php">Formularz Wypożyczenia</a>
+						</div
 						</div>
 					</li>
 					<?php
