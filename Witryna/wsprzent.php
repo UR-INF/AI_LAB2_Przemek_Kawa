@@ -5,6 +5,19 @@ $conn = new mysqli("localhost","root","","aplikacje");
 if($conn->connect_error) {
 	die("Conn Fail: ".$conn->connect_error);
 }
+if(!isset($_SESSION['login']))
+{
+	$conn->close();
+	header('Location: index.php');
+	exit;
+}
+$odb = $_SESSION['dataodb'];
+$zwr = $_SESSION['datazwr'];
+$sql = "SELECT s.id_sprzet,marka,model,typ_sprzetu,cena,kaucja,zdjecie,status FROM sprzet s left join wypozyczenia w ON s.id_sprzet = w.id_sprzet where status = 'Oddany' OR  status is NULL;";
+$res = $conn->query($sql);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +66,7 @@ if($conn->connect_error) {
 							<a class="dropdown-item" href="chhaslo.php">Zmień hasło</a>
 							<a class="dropdown-item" href="Pklienta.php">Panel Klienta</a>
 							<a class="dropdown-item" href="Wform.php">Formularz Wypożyczenia</a>
-						</div
+						</div>
 						</div>
 					</li>
 					<?php
@@ -83,112 +96,52 @@ if($conn->connect_error) {
 			</div>
 
 	</nav>
- <div class="row content"  >
-    <div class="col-sm-2" >
+ <div class="row content">
+    
+		<div class = "container">
+		<hr>
+		<h2 class = "text-center"> Auktualnie dostepny sprzent</h2>
+		<hr>
+		</div>
+		<div class = "container">
+			<?php 
+				while ($row = $res->fetch_assoc()) {
+					?>
+					<div class="row">
+						<div class="col-sm-1"></div>
+						<div class="col-sm-5  text-center">
+							<h4> <?php echo $row['marka'].' '.$row['model']; ?></h4>
+							<img src="img/big_img/<?php echo $row['zdjecie']; ?>.jpg" alt="" class="w-100">
+							
+						</div>
+						<div class="col-sm-5 text-center">
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-dark"><?php echo $row['typ_sprzetu']?></li>
+								<li class="list-group-item list-group-item-dark">Cena za dzień: <?php echo $row['cena']?></li>
+								<li class="list-group-item list-group-item-dark">Kaucja: <?php echo $row['kaucja']?></li>
 
-    </div>
-	<div class="col-sm-8 text-center" >  
-		<div id="demo" class="carousel slide" data-ride="carousel" >
+								<li class="list-group-item list-group-item-dark">
+								Koszt: <?php echo (((strtotime($_SESSION['datazwr']) - strtotime($_SESSION['dataodb'])) / (60 * 60 * 24)+1)*$row['cena'] )?> PLN
+								</li>
+							</ul>
+							<form action ="transation.php" method="post">
+								<input name="id_sp" type="hidden" value="<?php echo $row['id_sprzet']?>">
+								<button name="MojButton" class="btn btn-dark btn-lg">Wypożycz</button>
+							</form>
+						</div>
+						<div class="col-sm-1"></div>
 
-		  <!-- Indicators -->
-		  <ul class="carousel-indicators">
-			<li data-target="#demo" data-slide-to="0" class="active"></li>
-			<li data-target="#demo" data-slide-to="1"></li>
-			<li data-target="#demo" data-slide-to="2"></li>
-		  </ul>
-
-		  <!-- The slideshow -->
-		  <div class="carousel-inner">
-			<div class="carousel-item active">
-			  <img src="img/strona/top1.jpg" alt="Not found">
-			  <div class="carousel-caption">
-				<h3>Koparki</h3>
-			 </div>
-			</div>
-			<div class="carousel-item">
-			  <img src="img/strona/top2.jpg" alt="Not found">
-			  <div class="carousel-caption">
-				<h3>Więcej Koparek</h3>
-				<p>Tak dokładnie WIĘCEJ Koparek</p>
-			 </div>
-			</div>
-			<div class="carousel-item">
-			  <img src="img/strona/top3.png" alt="Not found">
-			  <div class="carousel-caption">
-				<h3>Betoniarka?</h3>
-				<p>To nie jest Koparka</p>
-			 </div>
-			</div>
-		  </div>
-
-		  <!-- Left and right controls -->
-		  <a style="filter: invert(100%)" class="carousel-control-prev" href="#demo" data-slide="prev">
-			<span class="carousel-control-prev-icon"></span>
-		  </a>
-		  <a style="filter: invert(100%)" class="carousel-control-next" href="#demo" data-slide="next">
-			<span class="carousel-control-next-icon"></span>
-		  </a>
-
+					</div>
+					<hr>
+					<?php
+				}
+				$conn->close();
+				?>
 		</div>
 	</div>
-	<div class="col-sm-2">
-
-      </div>
+	
  </div>
-<div class="container text-center  bg-dark text-white">    
- <div id="my">
-	<br>
-	<h3 class="text-center">Dlaczego my?</h3>
-	<br>
-	<div class="container">
-		<div class="row text-center">
-			<div class="col-md-3">
-				<i class="icon-shopping-basket"></i>
-				<h4>Tylko Kilka kroków</h4>
-				<p>
-					i masz sprzęt którego potrzebujesz
-				</p>
-			</div>
 
-			<div class="col-md-3">
-				<i class="icon-dollar"></i>
-				<h4>
-					Brak Kaucji
-				</h4>
-				<p>
-					za wypożyczenie
-				</p>
-
-			</div>
-
-			<div class="col-md-3">
-				<i class="icon-truck"></i>
-				<h4>
-					Podstawienie za darmo
-				</h4>
-				<p>
-					W 1 dzień
-				</p>
-
-
-			</div>
-			<div class="col-md-3">
-				<i class="icon-clock-alt"></i>
-				<h4>
-					Całodobowa obsługa
-				</h4>
-				<p>
-					chętnie pomoże Ci w każdej sytaucji
-				</p>
-
-			</div>
-		</div>
-	</div>
-	<br>
-</div>
-</div>
-<div class="container bg-secondary">  <br>
-</div>
 <div class="container text-center bg-dark text-white">    
  <div id="Kontakt">
 	<br>

@@ -5,6 +5,17 @@ $conn = new mysqli("localhost","root","","aplikacje");
 if($conn->connect_error) {
 	die("Conn Fail: ".$conn->connect_error);
 }
+if(!isset($_SESSION['login']))
+{
+	$conn->close();
+	header('Location: index.php');
+	exit;
+}
+$emailk=$_SESSION['login'];
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -53,14 +64,14 @@ if($conn->connect_error) {
 							<a class="dropdown-item" href="chhaslo.php">Zmień hasło</a>
 							<a class="dropdown-item" href="Pklienta.php">Panel Klienta</a>
 							<a class="dropdown-item" href="Wform.php">Formularz Wypożyczenia</a>
-						</div
+						</div>
 						</div>
 					</li>
 					<?php
 					} elseif (isset($_SESSION['prac']))
 					{ ?>
 						<li class="nav-item">
-							<a class="nav-link" href="PPrac.php">Zamówienia</a>
+							<a class="nav-link" href="PracK.php">Zamówienia</a>
 						</li>
 			<?php   }	?>
 				</ul>
@@ -88,107 +99,29 @@ if($conn->connect_error) {
 
     </div>
 	<div class="col-sm-8 text-center" >  
-		<div id="demo" class="carousel slide" data-ride="carousel" >
-
-		  <!-- Indicators -->
-		  <ul class="carousel-indicators">
-			<li data-target="#demo" data-slide-to="0" class="active"></li>
-			<li data-target="#demo" data-slide-to="1"></li>
-			<li data-target="#demo" data-slide-to="2"></li>
-		  </ul>
-
-		  <!-- The slideshow -->
-		  <div class="carousel-inner">
-			<div class="carousel-item active">
-			  <img src="img/strona/top1.jpg" alt="Not found">
-			  <div class="carousel-caption">
-				<h3>Koparki</h3>
-			 </div>
-			</div>
-			<div class="carousel-item">
-			  <img src="img/strona/top2.jpg" alt="Not found">
-			  <div class="carousel-caption">
-				<h3>Więcej Koparek</h3>
-				<p>Tak dokładnie WIĘCEJ Koparek</p>
-			 </div>
-			</div>
-			<div class="carousel-item">
-			  <img src="img/strona/top3.png" alt="Not found">
-			  <div class="carousel-caption">
-				<h3>Betoniarka?</h3>
-				<p>To nie jest Koparka</p>
-			 </div>
-			</div>
-		  </div>
-
-		  <!-- Left and right controls -->
-		  <a style="filter: invert(100%)" class="carousel-control-prev" href="#demo" data-slide="prev">
-			<span class="carousel-control-prev-icon"></span>
-		  </a>
-		  <a style="filter: invert(100%)" class="carousel-control-next" href="#demo" data-slide="next">
-			<span class="carousel-control-next-icon"></span>
-		  </a>
-
+		<div class="container">
+			<form action="WformPOST.php" method="POST">
+						<div class="form-group">
+							<label class="col-form-label col-md-4">Data odbioru<input class="form-control" type="date" value="<?php echo date("Y-m-d") ?>" name="dataodb"></label>
+						</div>
+						<div class="form-group">
+							<label class="col-form-label col-md-4">Data zwrotu<input class="form-control" type="date" value="<?php echo date("Y-m-d") ?>" name="datazwr"></label>
+						</div>
+						<button id="szukaj" name="szukaj" class="btn-dark btn-lg">Sprawdz Dostępne</button>
+					</form>
 		</div>
+		<?php
+		if(isset($_SESSION['Grrr']))
+	  {
+		  echo $_SESSION['Grrr'];
+		  unset ($_SESSION['Grrr']);
+	  }?>
 	</div>
 	<div class="col-sm-2">
 
       </div>
  </div>
-<div class="container text-center  bg-dark text-white">    
- <div id="my">
-	<br>
-	<h3 class="text-center">Dlaczego my?</h3>
-	<br>
-	<div class="container">
-		<div class="row text-center">
-			<div class="col-md-3">
-				<i class="icon-shopping-basket"></i>
-				<h4>Tylko Kilka kroków</h4>
-				<p>
-					i masz sprzęt którego potrzebujesz
-				</p>
-			</div>
 
-			<div class="col-md-3">
-				<i class="icon-dollar"></i>
-				<h4>
-					Brak Kaucji
-				</h4>
-				<p>
-					za wypożyczenie
-				</p>
-
-			</div>
-
-			<div class="col-md-3">
-				<i class="icon-truck"></i>
-				<h4>
-					Podstawienie za darmo
-				</h4>
-				<p>
-					W 1 dzień
-				</p>
-
-
-			</div>
-			<div class="col-md-3">
-				<i class="icon-clock-alt"></i>
-				<h4>
-					Całodobowa obsługa
-				</h4>
-				<p>
-					chętnie pomoże Ci w każdej sytaucji
-				</p>
-
-			</div>
-		</div>
-	</div>
-	<br>
-</div>
-</div>
-<div class="container bg-secondary">  <br>
-</div>
 <div class="container text-center bg-dark text-white">    
  <div id="Kontakt">
 	<br>

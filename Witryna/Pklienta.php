@@ -11,6 +11,13 @@ if(!isset($_SESSION['login']))
 	header('Location: index.php');
 	exit;
 }
+$emailk=$_SESSION['login'];
+$sql = "SELECT id_wypozyczenia, w.id_sprzet,id_pracownik, w.id_klient, data_odb,data_zwr, status , marka , model , typ_sprzetu, cena, data_zwr-data_odb as dni
+FROM wypozyczenia w, sprzet s, klient k
+WHERE s.id_sprzet=w.id_sprzet and w.id_klient=k.id_klient and k.email = LOWER('$emailk')";
+
+$result = $conn->query($sql) or die($conn->error);
+
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +73,7 @@ if(!isset($_SESSION['login']))
 					} elseif (isset($_SESSION['prac']))
 					{ ?>
 						<li class="nav-item">
-							<a class="nav-link" href="PracK.php">Zamówienia</a>
+							<a class="nav-link" href="PPrac.php">Zamówienia</a>
 						</li>
 			<?php   }	?>
 				</ul>
@@ -94,7 +101,46 @@ if(!isset($_SESSION['login']))
 
     </div>
 	<div class="col-sm-8 text-center" >  
-		
+		<div class="container">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Marka</th>
+						<th scope="col">Model</th>
+						<th scope="col">Rodzaj</th>
+						<th scope="col">Data Odbioru</th>
+						<th scope="col">Data Zwrotu</th>
+						<th scope="col">Koszt</th>
+						<th scope="col">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php
+					while($row = $result->fetch_assoc())
+					{
+					?>
+					<tr>
+						<th scope="row"><?php echo $row['id_wypozyczenia']; ?></th>
+						<td><?php echo $row['marka']; ?></td>
+						<td><?php echo $row['model']; ?></td>
+						<td><?php echo $row['typ_sprzetu']; ?></td>
+						<td><?php echo $row['data_odb']; ?></td>
+						<td><?php echo $row['data_zwr']; ?></td>
+						<td><?php
+						if($row['dni']==0){$row['dni']=1;}
+						$cena=$row['dni']*$row['cena'];
+						echo $cena;
+						?></td>
+						<td><?php echo $row['status']; ?></td>
+			<?php	} ?>
+				</tbody>
+			</table>
+			<?php
+					
+				$conn->close();
+				?>
+		</div>
 	</div>
 	<div class="col-sm-2">
 

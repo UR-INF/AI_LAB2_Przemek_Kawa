@@ -55,7 +55,7 @@ session_start();
 					} elseif (isset($_SESSION['prac']))
 					{ ?>
 						<li class="nav-item">
-							<a class="nav-link" href="PracK.php">Zamówienia</a>
+							<a class="nav-link" href="PPrac.php">Zamówienia</a>
 						</li>
 			<?php   }	?>
 				</ul>
