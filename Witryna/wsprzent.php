@@ -100,7 +100,7 @@ $res = $conn->query($sql);
     
 		<div class = "container">
 		<hr>
-		<h2 class = "text-center"> Auktualnie dostepny sprzent</h2>
+		<h2 class = "text-center"> Aktualnie dostepny sprzęt</h2>
 		<hr>
 		</div>
 		<div class = "container">
@@ -118,7 +118,7 @@ $res = $conn->query($sql);
 							<ul class="list-group">
 								<li class="list-group-item list-group-item-dark"><?php echo $row['typ_sprzetu']?></li>
 								<li class="list-group-item list-group-item-dark">Cena za dzień: <?php echo $row['cena']?></li>
-								<li class="list-group-item list-group-item-dark">Kaucja: <?php echo $row['kaucja']?></li>
+								<li class="list-group-item list-group-item-dark">Kaucja: <?php echo $row['kaucja']?> PLN</li>
 
 								<li class="list-group-item list-group-item-dark">
 								Koszt: <?php echo (((strtotime($_SESSION['datazwr']) - strtotime($_SESSION['dataodb'])) / (60 * 60 * 24)+1)*$row['cena'] )?> PLN

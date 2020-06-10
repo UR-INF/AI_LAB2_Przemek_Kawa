@@ -12,9 +12,10 @@ if(!isset($_SESSION['prac']))
 	exit;
 }
 $emailk=$_SESSION['prac'];
-$sql = "SELECT id_wypozyczenia, w.id_sprzet, w.id_klient, data_odb,data_zwr, status , marka , model , typ_sprzetu, cena, data_zwr-data_odb as dni
+$sql = "SELECT id_wypozyczenia, w.id_sprzet, w.id_klient, data_odb,data_zwr, status , marka , model , typ_sprzetu, cena, data_zwr-data_odb as dni, imie,nazwisko
 FROM wypozyczenia w, sprzet s, klient k
-WHERE s.id_sprzet=w.id_sprzet and w.id_klient=k.id_klient";
+WHERE s.id_sprzet=w.id_sprzet and w.id_klient=k.id_klient
+ORDER BY status DESC ,data_odb DESC";
 
 $result = $conn->query($sql) or die($conn->error);
 
@@ -109,6 +110,8 @@ $result = $conn->query($sql) or die($conn->error);
 						<th scope="col">Marka</th>
 						<th scope="col">Model</th>
 						<th scope="col">Rodzaj</th>
+						<th scope="col">Imie</th>
+						<th scope="col">Nazwisko</th>
 						<th scope="col">Data Odbioru</th>
 						<th scope="col">Data Zwrotu</th>
 						<th scope="col">Koszt</th>
@@ -126,6 +129,8 @@ $result = $conn->query($sql) or die($conn->error);
 						<td><?php echo $row['marka']; ?></td>
 						<td><?php echo $row['model']; ?></td>
 						<td><?php echo $row['typ_sprzetu']; ?></td>
+						<td><?php echo $row['imie']; ?></td>
+						<td><?php echo $row['nazwisko']; ?></td>
 						<td><?php echo $row['data_odb']; ?></td>
 						<td><?php echo $row['data_zwr']; ?></td>
 						<td><?php
@@ -140,7 +145,7 @@ $result = $conn->query($sql) or die($conn->error);
 										<input name="id_wyp" type="hidden" value="<?php echo $row['id_wypozyczenia']; ?>">
 										<button name="usun" class="btn btn-warning btm-sm">Usuń</button>
 									</form>
-									<form method="post" action="zwroc.php">
+									<form method="post" action="zwroc.php" clas="d-inline">
 										<input name="id_wyp" type="hidden" value="<?php echo $row['id_wypozyczenia']; ?>">
 										<button name="zwroc" class="btn btn-secondary btm-sm">Zwróć</button>
 									</form>
