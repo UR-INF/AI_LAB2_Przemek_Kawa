@@ -88,7 +88,7 @@ session_start();
 		  <input type="text" class="form-control" name="email" placeholder="Email" required="required">
 		</div>
 		<div class="form-group">
-		  <input type="text" class="form-control" name="oldpass" placeholder="Stare Hasło" required="required">
+		  <input type="password" class="form-control" name="oldpass" placeholder="Stare Hasło" required="required">
 
 		</div>
 		<div class="form-group">
