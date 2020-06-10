@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 06 Cze 2020, 14:51
+-- Czas generowania: 10 Cze 2020, 10:02
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.5
 
@@ -64,7 +64,7 @@ CREATE TABLE `pracownicy` (
 --
 
 INSERT INTO `pracownicy` (`id_pracownik`, `imie`, `nazwisko`, `email`, `haslo`, `nr_telefonu`) VALUES
-(1, 'Przemysław', 'Kawa', 'kawa@kawa.com', 'd4c6bccc4dae53cb3d8c01b43dec8ce1', 678678678);
+(1, 'Przemysław', 'Kawa', 'kawa@kawa.com', '4c799140a3aa3ea2f499ce191a285c0d', 678678678);
 
 -- --------------------------------------------------------
 
@@ -109,6 +109,15 @@ CREATE TABLE `wypozyczenia` (
   `data_zwr` date NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Zrzut danych tabeli `wypozyczenia`
+--
+
+INSERT INTO `wypozyczenia` (`id_wypozyczenia`, `id_sprzet`, `id_klient`, `id_pracownik`, `data_odb`, `data_zwr`, `status`) VALUES
+(3, 4, 5, NULL, '2020-06-10', '2020-06-11', 'Oddany'),
+(4, 4, 4, NULL, '2020-06-10', '2020-06-13', 'Wypożyczony'),
+(5, 3, 4, NULL, '2020-06-10', '2020-06-12', 'Oddany');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -167,7 +176,7 @@ ALTER TABLE `sprzet`
 -- AUTO_INCREMENT dla tabeli `wypozyczenia`
 --
 ALTER TABLE `wypozyczenia`
-  MODIFY `id_wypozyczenia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_wypozyczenia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ograniczenia dla zrzutów tabel
